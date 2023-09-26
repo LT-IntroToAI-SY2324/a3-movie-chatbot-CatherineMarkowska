@@ -13,7 +13,7 @@
 from typing import List, Tuple
 
 movie_db: List[Tuple[str, str, int, List[str]]] = [
-    (
+    (           # tuple in ()
         "amarcord",  # title
         "federico fellini",  # director
         1974,  # year
