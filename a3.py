@@ -100,7 +100,7 @@ def title_before_year(matches: List[str]) -> List[str]:
     for movie in movie_db:
         if get_year(movie) < int(matches[0]):
             result.append(get_title(movie))
-    #print(result) 
+    print(result) 
     return result
 
 
@@ -154,7 +154,7 @@ def title_by_director(matches: List[str]) -> List[str]:
     for movie in movie_db:
         if get_director(movie) == (matches[0]):
             result.append(get_title(movie))
-    #print(result) 
+    print(result) 
     return result
 
 
@@ -167,15 +167,15 @@ def actors_by_title(matches: List[str]) -> List[str]:
     Returns:
         a list of actors who acted in the passed in title
     """
-    # result = []
-    # for movie in movie_db:
-    #     if get_title(movie) == (matches[0]):
-    #         result.append(get_actors(movie))
-    # print(result) 
-    # return result
+    result = []
+    for movie in movie_db:
+        if get_title(movie) == (matches[0]):
+            result.append(get_actors(movie))
+    print(result) 
+    return result
     
     ## return a list 
-
+    
 
 def year_by_title(matches: List[str]) -> List[int]:
     """Finds year of passed in movie title
@@ -192,7 +192,8 @@ def year_by_title(matches: List[str]) -> List[int]:
             result.append(get_year(movie))
     print(result) 
     return result
-    ## return a list 
+    # return a list 
+    
 
 def title_by_actor(matches: List[str]) -> List[str]:
     """Finds titles of all movies that the given actor was in
@@ -203,7 +204,12 @@ def title_by_actor(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles that the actor acted in
     """
-    pass
+    result = []
+    for movie in movie_db:
+        if get_actors(movie) == (matches[0]):
+            result.append(get_title(movie))
+    print(result) 
+    return result
 
 
 # dummy argument is ignored and doesn't matter
@@ -278,7 +284,7 @@ if __name__ == "__main__":
     assert isinstance(title_by_director(["steven spielberg"]), list), "title_by_director not returning a list"
     assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
     assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
-    # assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
+    assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
     
     assert sorted(title_by_year(["1974"])) == sorted(
         ["amarcord", "chinatown"]
