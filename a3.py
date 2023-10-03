@@ -38,10 +38,6 @@ def get_year(movie: Tuple[str, str, int, List[str]]) -> int:
 def get_actors(movie: Tuple[str, str, int, List[str]]) -> List[str]:
     return movie[3]
 
-#print(get_title(movie_db[1]))
-# for movie in movie_db:
-#     print(get_title(movie))
-
 # Below are a set of actions. Each takes a list argument and returns a list of answers
 # according to the action and the argument. It is important that each function returns a
 # list of the answer(s) and not just the answer itself.
@@ -135,7 +131,7 @@ def director_by_title(matches: List[str]) -> List[str]:
     """
     result = []
     for movie in movie_db:
-        if get_title(movie) == (matches[0]):
+        if get_title(movie) == matches[0]:
             result.append(get_director(movie))
     #print(result) 
     return result
@@ -152,9 +148,9 @@ def title_by_director(matches: List[str]) -> List[str]:
     """
     result = []
     for movie in movie_db:
-        if get_director(movie) == (matches[0]):
+        if get_director(movie) == matches[0]:
             result.append(get_title(movie))
-    print(result) 
+    #print(result) 
     return result
 
 
@@ -169,9 +165,9 @@ def actors_by_title(matches: List[str]) -> List[str]:
     """
     result = []
     for movie in movie_db:
-        if get_title(movie) == (matches[0]):
-            result.append(get_actors(movie))
-    print(result) 
+        if get_title(movie) == matches[0]:
+            result = (get_actors(movie))
+    #print(result) 
     return result
     
     ## return a list 
@@ -188,9 +184,9 @@ def year_by_title(matches: List[str]) -> List[int]:
     """
     result = []
     for movie in movie_db:
-        if get_title(movie) == (matches[0]):
+        if get_title(movie) == matches[0]:
             result.append(get_year(movie))
-    print(result) 
+   # print(result) 
     return result
     # return a list 
     
@@ -204,11 +200,12 @@ def title_by_actor(matches: List[str]) -> List[str]:
     Returns:
         a list of movie titles that the actor acted in
     """
+    
     result = []
     for movie in movie_db:
-        if get_actors(movie) == (matches[0]):
+        if matches[0] in get_actors(movie):
             result.append(get_title(movie))
-    print(result) 
+    #print(result) 
     return result
 
 
@@ -217,8 +214,8 @@ def bye_action(dummy: List[str]) -> None:
     raise KeyboardInterrupt
 
 
-# The pattern-action list for the natural language query system A list of tuples of
-# pattern and action It must be declared here, after all of the function definitions
+# The pattern-action list for the natural language query system. A list of tuples of
+# pattern and action. It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
     (str.split("what movies were made in _"), title_by_year),
     (str.split("what movies were made between _ and _"), title_by_year_range),
@@ -248,9 +245,8 @@ def search_pa_list(src: List[str]) -> List[str]:
         a list of answers. Will be ["I don't understand"] if it finds no matches and
         ["No answers"] if it finds a match but no answers
     """
-    pass
-
-
+   
+   
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
     characters and exit gracefully.
