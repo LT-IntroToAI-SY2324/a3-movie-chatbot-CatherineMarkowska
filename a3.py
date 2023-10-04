@@ -217,6 +217,7 @@ def bye_action(dummy: List[str]) -> None:
 # The pattern-action list for the natural language query system. A list of tuples of
 # pattern and action. It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
+    (str.split("what year was % released?"), title_by_year), # my addition
     (str.split("what movies were made in _"), title_by_year),
     (str.split("what movies were made between _ and _"), title_by_year_range),
     (str.split("what movies were made before _"), title_before_year),
@@ -245,7 +246,13 @@ def search_pa_list(src: List[str]) -> List[str]:
         a list of answers. Will be ["I don't understand"] if it finds no matches and
         ["No answers"] if it finds a match but no answers
     """
-   
+    for pat, act in pa_list:
+        mat = match(pat, src)
+        #print(mat)
+        if mat is not None:
+            answer = act(mat)
+            return answer if answer else["No answers"]
+    return ["I don't understand"]
    
 def query_loop() -> None:
     """The simple query loop. The try/except structure is to catch Ctrl-C or Ctrl-D
@@ -269,7 +276,7 @@ def query_loop() -> None:
 # uncomment the following line once you've written all of your code and are ready to try
 # it out. Before running the following line, you should make sure that your code passes
 # the existing asserts.
-# query_loop()
+query_loop()
 
 if __name__ == "__main__":
     assert isinstance(title_by_year(["1974"]), list), "title_by_year not returning a list"

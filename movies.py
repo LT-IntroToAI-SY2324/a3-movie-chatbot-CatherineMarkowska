@@ -13,6 +13,34 @@
 from typing import List, Tuple
 
 movie_db: List[Tuple[str, str, int, List[str]]] = [
+    ### Here are two of my additions
+    (
+        "jurassic park", # title 
+        "steven spielberg", # director 
+        1993, # year 
+        [
+            "jeff goldblum",
+            "laura dern",
+            "laura dern",
+            "sam neill"
+            "richard attenborough",
+        ],
+    ),
+
+    (
+        "carrie", # title 
+        "brian de palma", # director 
+        1976, # year 
+        [
+            "sissy spacek",
+            "piper laurie",
+            "amy irving",
+            "john travolta",
+            "william kat",
+            "nancy allen",
+            "betty buckley",
+        ],
+    ),
     (           # tuple in ()
         "amarcord",  # title
         "federico fellini",  # director
@@ -24,6 +52,7 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
             "armando drancia",
         ],  # actors/actresses
     ),
+
     (
         "the big easy",
         "jim mcbride",
