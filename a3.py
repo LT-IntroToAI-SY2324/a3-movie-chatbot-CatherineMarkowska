@@ -217,7 +217,7 @@ def bye_action(dummy: List[str]) -> None:
 # The pattern-action list for the natural language query system. A list of tuples of
 # pattern and action. It must be declared here, after all of the function definitions
 pa_list: List[Tuple[List[str], Callable[[List[str]], List[Any]]]] = [
-    (str.split("what year was % released?"), title_by_year), # my addition
+    (str.split("what actors were in %"), actors_by_title), # my addition
     (str.split("what movies were made in _"), title_by_year),
     (str.split("what movies were made between _ and _"), title_by_year_range),
     (str.split("what movies were made before _"), title_before_year),
@@ -288,6 +288,7 @@ if __name__ == "__main__":
     assert isinstance(actors_by_title(["jaws"]), list), "actors_by_title not returning a list"
     assert isinstance(year_by_title(["jaws"]), list), "year_by_title not returning a list"
     assert isinstance(title_by_actor(["orson welles"]), list), "title_by_actor not returning a list"
+    assert isinstance(actors_by_title(["carrie"]), list) ### my assert
     
     assert sorted(title_by_year(["1974"])) == sorted(
         ["amarcord", "chinatown"]
@@ -332,5 +333,15 @@ if __name__ == "__main__":
     assert sorted(
         search_pa_list(["what", "movies", "were", "made", "in", "2020"])
     ) == sorted(["No answers"]), "failed search_pa_list test 3"
+
+    # my assert 
+    assert sorted(actors_by_title(["carrie"])) == sorted(
+        ["sissy spacek"]
+    ), "failed actors_by_title test"
+
+    # my assert 
+    assert sorted(actors_by_title(["carrie"])) == sorted(
+        ["sissy spacek"]
+    ), "failed actors_by_title test"
 
     print("All tests passed!")

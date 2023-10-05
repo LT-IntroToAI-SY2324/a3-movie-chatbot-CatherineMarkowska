@@ -21,8 +21,9 @@ movie_db: List[Tuple[str, str, int, List[str]]] = [
         [
             "jeff goldblum",
             "laura dern",
-            "laura dern",
-            "sam neill"
+            "ariana richards",
+            "Joseph Mazzello",
+            "sam neill",
             "richard attenborough",
         ],
     ),
